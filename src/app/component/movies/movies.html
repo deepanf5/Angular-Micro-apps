@@ -1,18 +1,10 @@
+<p>Micro-app 1</p>
 <div class="movie-container">
     @for (movie of moviesList; track $index) {
     <div class="movie-card">
         <p>{{movie.title}}</p>
-        <button (click)="getMovie(movie)">see Details</button>
+        <button class="btn btn-primary" (click)="getMovie(movie)">see Details</button>
     </div>
     }
 </div>
 
-
-
-@if (movie) {
-    <div>
-        <p>{{movie.title}}</p>
-        <p>{{movie.poster}}</p>
-    </div>
-
-}

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-movies',
@@ -7,53 +8,25 @@ import { Component } from '@angular/core';
   styleUrl: './movies.css',
   host: { 'mfe-id': 'mfe4200' }
 })
-export class Movies {
+export class Movies implements OnInit {
+moviesList:any
 
-  movie: any
 
-  moviesList = [
+  constructor(private http:HttpClient){}
 
-    {
-      id: 1,
-      title: 'movie 1',
-      poster: 'poster.jpg'
-    },
-    {
-      id: 2,
-      title: 'movie 2',
-      poster: 'poster.jpg'
-    },
-    {
-      id: 3,
-      title: 'movie 3',
-      poster: 'poster.jpg'
-    },
-    {
-      id: 4,
-      title: 'movie 4',
-      poster: 'poster.jpg'
-    },
-    {
-      id: 5,
-      title: 'movie 5',
-      poster: 'poster.jpg'
-    },
-    {
-      id: 6,
-      title: 'movie 6',
-      poster: 'poster.jpg'
-    },
-    {
-      id: 7,
-      title: 'movie 7',
-      poster: 'poster.jpg'
-    },
-    {
-      id: 8,
-      title: 'movie 8',
-      poster: 'poster.jpg'
-    }
-  ]
+  ngOnInit(): void {
+    this.http.get("https://moviesbaseapi.onrender.com/api/movies/").subscribe(
+      {
+        next:(res:any) => {
+          this.moviesList = res
+        },
+        error(err) {
+          console.error(err)
+        }
+      }
+    )
+
+  }
 
 
   getMovie(Movie: any) {
