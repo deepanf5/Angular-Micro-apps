@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './movies.html',
   styleUrl: './movies.css',
+  host: { 'mfe-id': 'mfe4200' }
 })
 export class Movies {
 
@@ -58,6 +59,8 @@ export class Movies {
   getMovie(Movie:any) {
 
    this.movie =  this.moviesList.find(movie => Movie.id === movie.id)
+
+   window.dispatchEvent(new CustomEvent('selectedMovie',{detail:Movie}))
 
   }
 
